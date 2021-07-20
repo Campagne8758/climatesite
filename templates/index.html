@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href={{ url_for("static",filename="styles.css") }}>
+</head>
+
+
+<body>
+<div class="sidenav">
+    <h2>Resources</h2>
+    <a href="#this">This</a>
+    <a href="#also_this">Also This</a>
+    <a href="#und_zis">Und_zis</a>
+    <a href="#zis_too">Zis too</a>
+</div>
+
+
+<div class="main">
+    <div class="box">
+    Temp deviation:
+    <br>
+    <h2>{{ tmp_display }} °C</h2>
+    </div>
+
+    <div class="box">
+    Deviation last 12 months:
+    <br>
+    <h2>Some graph</h2>
+    </div>
+
+    <div class="box">
+    CO2 emitted:
+    <br>
+    <h2>Many tonnes</h2>
+    </div>
+    
+</div>
+
+
+</body>
+</html> 
