@@ -9,3 +9,7 @@ def index():
     ip_address = request.remote_addr
     tmp_display = temp_anomaly(50, 1)
     return render_template("index.html", tmp_display=tmp_display, ip_address=ip_address)
+
+# Adding a bunch of
+# comments to test 
+# GITHUB
