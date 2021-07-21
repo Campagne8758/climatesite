@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href={{ url_for("static",filename="styles.css") }}>
+    <script type="text/javascript" src="static/scripts.js"></script>
+
+    <title>Climate trend</title>
+</head>
+
+
+<body>
+<div class="sidenav">
+    <h2>Resources</h2>
+    <a href="#this">This</a>
+    <a href="#also_this">Also This</a>
+    <a href="#und_zis">Und_zis</a>
+    <a href="#zis_too">Zis too</a>
+</div>
+
+
+<div class="main">
+
+    <div id="map"></div>
+<br>
+
+{% block main %}{% endblock %}
+    
+</div>
+
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwY6Vu52px4Kgi-fdtbZBWsMdTXafj--0&callback=initMap&libraries=&v=weekly"
+async
+></script>
+
+</body>
+</html> 

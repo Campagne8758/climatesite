@@ -40,6 +40,14 @@ font-family: "Lato", sans-serif;
   font-size: 18px; 
 } 
 
+#map {
+  display: inline-block;
+  width: 1000px;
+  height: 300px;
+  padding: 20px;
+  margin: 20px;
+}
+
 .box {
   float: left;
   width: 180px;

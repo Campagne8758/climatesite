@@ -3,7 +3,7 @@ from helpers import temp_anomaly
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     #  get ip address for future use to get user's location
     ip_address = request.remote_addr
