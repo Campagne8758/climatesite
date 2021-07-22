@@ -4,3 +4,4 @@ mockup.psd
 step1.py
 .DS_Store
 package-lock.json
+.env

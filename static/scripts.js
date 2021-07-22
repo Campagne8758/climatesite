@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 function initMap() {
-    const myLatlng = { lat: -25.363, lng: 131.044 };
+    const myLatlng = { lat: lat_in , lng: lon_in };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
+      zoom: 10,
       center: myLatlng,
     });
     // Create the initial InfoWindow.
