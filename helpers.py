@@ -1,6 +1,7 @@
 import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
+import requests
 
 def temp_anomaly(lat_in, lon_in):
     radius = 5
@@ -23,6 +24,16 @@ def temp_anomaly(lat_in, lon_in):
     #  calculate average and return
     avg_temp = total_temp / data_points
     return round(avg_temp,3)
+
+def calc_emissions(country):
+    year = '2018'
+    co2url = "https://api.worldbank.org/v2/en/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=20000&source=2"
+    response = requests.get(co2url)
+
+    for i in response.json()[1]:
+        if i['country']['value'] == country and i['date'] == year:
+            return str(i['value'])
+
 
 # Not currenly used --------- NEEDS WORK TO DISPLAY A GRAPH ----------
 def temp_graph(lat_in, lon_in):
