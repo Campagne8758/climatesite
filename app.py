@@ -1,5 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session
-from helpers import temp_anomaly, calc_emissions_2018, calc_emissions_1990
+from helpers import temp_anomaly, calc_emissions
 import requests
 
 app = Flask(__name__)
@@ -19,10 +19,20 @@ def index():
         loc_in = {'lat' : lat_in, 'lon' : lon_in}
 
         tmp_display = temp_anomaly(lat_in, lon_in)
-        emissions_2018 = calc_emissions_2018(country)
-        emissions_1990 = calc_emissions_1990(country)
+        emissions = calc_emissions(country)
+        emissions_1990 = emissions[0]
+        emissions_2018 = emissions[1]
 
-        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, fake_key=fake_key)
+        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990)
 
     else:
-        return render_template("index.html")
+        lat_in = request.form.get("lat")
+        lon_in = request.form.get("lon")
+        loc_in = {'lat' : lat_in, 'lon' : lon_in}
+
+        tmp_display = temp_anomaly(int(lat_in), int(lon_in))
+        emissions = calc_emissions('Italy')
+        emissions_1990 = emissions[0]
+        emissions_2018 = emissions[1]
+
+        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990)

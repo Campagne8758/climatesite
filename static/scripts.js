@@ -25,5 +25,13 @@ function initMap() {
       );
       infoWindow.open(map);
     });
-  }
-  
+}
+
+function getLatLng() {
+    let map = document.getElementById("map");
+    map.addEventListener('click', function() {
+        // upLatLng = map.addListener("click", (mapsMouseEvent.latLng.toJSON()));
+        document.querySelector("#latlon").innerHTML = "You clicked on the map";
+    })
+    
+}

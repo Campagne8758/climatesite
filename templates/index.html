@@ -20,5 +20,14 @@
     <h2>{{ emissions_2018 }}</h2>
     Kt Eq
     </div>
-    
+<br>
+<p>
+<div>
+    <form action="/" method="post">
+        <input type='number' id='lat' name="lat" placeholder="Latitude" min="-90" max="90">
+        <input type='number' id='lon' name="lon" placeholder="Longitude" min="-180" max="180">
+        <button class="btn btn-primary" type="submit">Change location</button>
+    </form>
+</div>
+</p>
 {% endblock %}

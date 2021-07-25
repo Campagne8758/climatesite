@@ -1,7 +1,7 @@
 import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
-import requests
+import json
 
 def temp_anomaly(lat_in, lon_in):
     radius = 5
@@ -25,24 +25,28 @@ def temp_anomaly(lat_in, lon_in):
     avg_temp = total_temp / data_points
     return round(avg_temp,3)
 
-def calc_emissions_1990(country):
-    year = '1990'
-    co2url = "https://api.worldbank.org/v2/en/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=20000&source=2"
-    response = requests.get(co2url)
+def calc_emissions(country):
+    year_box2 = '1990'
+    year_box3 = '2018'
+    emissions1990 = '0'
+    emissions2018 = '0'
+    emissions = []
 
-    for i in response.json()[1]:
-        if i['country']['value'] == country and i['date'] == year:
-            return str(i['value'])
-
-def calc_emissions_2018(country):
-    year = '2018'
-    co2url = "https://api.worldbank.org/v2/en/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=20000&source=2"
-    response = requests.get(co2url)
-
-    for i in response.json()[1]:
-        if i['country']['value'] == country and i['date'] == year:
-            return str(i['value'])
-
+    with open('Data/co2.json') as co2:
+        data = json.load(co2)
+        for i in data[1]:
+            if i['country']['value'] == country:
+                if i['date'] == year_box2:
+                    emissions1990 = i['value']
+                elif i['date'] == year_box3:
+                    emissions2018 = i['value']
+    
+    emissions.append(emissions1990)
+    emissions.append(emissions2018)
+    return emissions
+                
+                
+            
 
 # Not currenly used --------- NEEDS WORK TO DISPLAY A GRAPH ----------
 def temp_graph(lat_in, lon_in):
