@@ -35,6 +35,9 @@ def calc_emissions(country):
     emissions1990 = '0'
     emissions2018 = '0'
     emissions = []
+    if country == "Russia":
+        country = "Russian Federation"
+
 
     with open('Data/co2.json') as co2:
         data = json.load(co2)
