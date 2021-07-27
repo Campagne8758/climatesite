@@ -16,11 +16,17 @@
 
 <body>
 <div class="sidenav">
+    {% block sidenav %} {% endblock %}
     <h2>Resources</h2>
-    <a href="#this">This</a>
-    <a href="#also_this">Also This</a>
-    <a href="#und_zis">Und_zis</a>
-    <a href="#zis_too">Zis too</a>
+    <a href="https://www.ipcc.ch/" target="_blank">IPCC</a>
+    <a href="http://berkeleyearth.org/" target="_blank">Berkeley earth</a>
+    <a href="http://static.berkeleyearth.org/pdf/skeptics-guide-to-climate-change.pdf" target="_blank">Skeptic's guide</a>
+    <a href="https://climate.nasa.gov/" target="_blank">NASA</a>
+
+    <h2>Sources</h2>
+    <a href="http://berkeleyearth.org/data/" target="_blank">Berkeley earth</a>
+    <a href="https://data.worldbank.org/indicator/EN.ATM.CO2E.KT?end=2018&start=2018&view=map" target="_blank">World Bank</a>
+
 </div>
 
 
@@ -33,10 +39,17 @@
     
 </div>
 
+<footer>
+    <p>DISCLAIMER: Please note this website was created as a student project and as such the data contained therein might not be 100% accurate.</p>
+    <p>If you'd like to learn about climate change the resources on the left hand side constitute an excellent starting point.</p>
+  </footer> 
+
 <script
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEBjX-IQaXy0dXtike6l2Sm4ileHItbDw&callback=initMap&libraries=&v=weekly"
 async
 ></script>
+
+
 
 </body>
 </html> 

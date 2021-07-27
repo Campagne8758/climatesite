@@ -28,6 +28,14 @@ def index():
     else:
         lat_in = request.form.get("lat")
         lon_in = request.form.get("lon")
+        if not lat_in or not lon_in:
+            tmp_display = temp_anomaly(44,9)
+            country = 'Italy'
+            loc_in = {'lat' : 44, 'lon' : 9}
+            emissions = calc_emissions(country)
+            emissions_1990 = emissions[0]
+            emissions_2018 = emissions[1]
+            return render_template("coord.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)
         loc_in = {'lat' : lat_in, 'lon' : lon_in}
 
         tmp_display = temp_anomaly(int(lat_in), int(lon_in))
@@ -36,4 +44,4 @@ def index():
         emissions_1990 = emissions[0]
         emissions_2018 = emissions[1]
 
-        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)
+        return render_template("coord.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)

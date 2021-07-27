@@ -1,9 +1,9 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 function initMap() {
     const myLatlng = { lat: lat_in , lng: lon_in };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
+      zoom: 6,
       center: myLatlng,
     });
     // Create the initial InfoWindow.
@@ -26,3 +26,10 @@ function initMap() {
       infoWindow.open(map);
     });
 }
+
+// function test_funct() {
+//     map.addListener("click", (mapsMouseEvent) => {
+//         const thing = (mapsMouseEvent.latLng.toJSON()),
+//         document.querySelector("#lat2").innerHTML = 'clicked',
+//     });
+// }
