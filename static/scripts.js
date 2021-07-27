@@ -8,7 +8,7 @@ function initMap() {
     });
     // Create the initial InfoWindow.
     let infoWindow = new google.maps.InfoWindow({
-      content: "Click the map to get Lat/Lng!",
+      content: "Click the map to find different Lat/Lng!",
       position: myLatlng,
     });
     infoWindow.open(map);
@@ -25,13 +25,4 @@ function initMap() {
       );
       infoWindow.open(map);
     });
-}
-
-function getLatLng() {
-    let map = document.getElementById("map");
-    map.addEventListener('click', function() {
-        // upLatLng = map.addListener("click", (mapsMouseEvent.latLng.toJSON()));
-        document.querySelector("#latlon").innerHTML = "You clicked on the map";
-    })
-    
 }

@@ -1,5 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session
-from helpers import temp_anomaly, calc_emissions
+from helpers import temp_anomaly, calc_emissions, geocode
 import requests
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def index():
         emissions_1990 = emissions[0]
         emissions_2018 = emissions[1]
 
-        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990)
+        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)
 
     else:
         lat_in = request.form.get("lat")
@@ -31,8 +31,9 @@ def index():
         loc_in = {'lat' : lat_in, 'lon' : lon_in}
 
         tmp_display = temp_anomaly(int(lat_in), int(lon_in))
-        emissions = calc_emissions('Italy')
+        country = geocode(lat_in,lon_in)
+        emissions = calc_emissions(country)
         emissions_1990 = emissions[0]
         emissions_2018 = emissions[1]
 
-        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990)
+        return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)

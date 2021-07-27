@@ -2,6 +2,7 @@ import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
 import json
+import requests
 
 def temp_anomaly(lat_in, lon_in):
     radius = 5
@@ -21,9 +22,12 @@ def temp_anomaly(lat_in, lon_in):
                 if str(j) != "nan":
                     total_temp += float(j)
                     data_points += 1
-    #  calculate average and return
-    avg_temp = total_temp / data_points
-    return round(avg_temp,3)
+    #  calculate average and return only if at least 1 data point was found
+    if data_points > 0:
+        avg_temp = total_temp / data_points
+        return round(avg_temp,3)
+    else:
+        return 'N/A'
 
 def calc_emissions(country):
     year_box2 = '1990'
@@ -44,8 +48,16 @@ def calc_emissions(country):
     emissions.append(emissions1990)
     emissions.append(emissions2018)
     return emissions
-                
-                
+
+
+def geocode(lat,lng):
+    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&result_type=country&key=AIzaSyDEBjX-IQaXy0dXtike6l2Sm4ileHItbDw'
+    response = requests.get(url)
+    if response.json()['status'] == 'ZERO_RESULTS':
+        return 'N/A' 
+    else:
+        country = response.json()['results'][0]['address_components'][0]['long_name']
+        return country                      
             
 
 # Not currenly used --------- NEEDS WORK TO DISPLAY A GRAPH ----------
