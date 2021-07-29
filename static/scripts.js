@@ -1,5 +1,12 @@
 // require('dotenv').config();
 
+function test_funct(oggietto) {
+    const latInput = document.querySelector('#lat');
+    const lonInput = document.querySelector('#lon');
+    latInput.value = Math.round(oggietto.lat);
+    lonInput.value = Math.round(oggietto.lng);
+}
+
 function initMap() {
     const myLatlng = { lat: lat_in , lng: lon_in };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -20,16 +27,12 @@ function initMap() {
       infoWindow = new google.maps.InfoWindow({
         position: mapsMouseEvent.latLng,
       });
+      const coord = mapsMouseEvent.latLng.toJSON();
       infoWindow.setContent(
-        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+        JSON.stringify(coord, null, 2)
       );
       infoWindow.open(map);
+      test_funct(coord);
     });
 }
 
-// function test_funct() {
-//     map.addListener("click", (mapsMouseEvent) => {
-//         const thing = (mapsMouseEvent.latLng.toJSON()),
-//         document.querySelector("#lat2").innerHTML = 'clicked',
-//     });
-// }

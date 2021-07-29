@@ -62,12 +62,3 @@ def geocode(lat,lng):
         country = response.json()['results'][0]['address_components'][0]['long_name']
         return country                      
             
-
-# Not currenly used --------- NEEDS WORK TO DISPLAY A GRAPH ----------
-def temp_graph(lat_in, lon_in):
-    tmps = xr.open_dataset("Data/Raw_TAVG_LatLong1.nc")
-    lat = lat_in + 90
-    lon = lon_in + 180
-    graph = tmps.temperature.values[3230:3253, lat, lon]
-    
-    return plt.plot(graph)
