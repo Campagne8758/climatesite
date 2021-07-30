@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, render_template, request
 from helpers import temp_anomaly, calc_emissions, geocode
 import requests
 
@@ -45,3 +45,17 @@ def index():
         emissions_2018 = emissions[1]
 
         return render_template("coord.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)
+
+@app.route("/explain")
+def explain():
+        ip_address = "24.48.0.1" #this will need to be: request.headers['X-Real-IP'] currently using test IP address the command is specific for pythoneverywhere
+        # Code to get initial user location:
+        url = f"http://ip-api.com/json/{ip_address}?fields=country,countryCode,lat,lon"
+        response = requests.get(url)
+        location = response.json()
+        country = location["country"]
+        lat_in = int(location["lat"])
+        lon_in = int(location["lon"])
+        loc_in = {'lat' : lat_in, 'lon' : lon_in}
+        
+        return render_template("explain.html", loc_in=loc_in)

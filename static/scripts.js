@@ -1,6 +1,6 @@
 // require('dotenv').config();
 
-function test_funct(oggietto) {
+function put_coord(oggietto) {
     const latInput = document.querySelector('#lat');
     const lonInput = document.querySelector('#lon');
     latInput.value = Math.round(oggietto.lat);
@@ -10,7 +10,7 @@ function test_funct(oggietto) {
 function initMap() {
     const myLatlng = { lat: lat_in , lng: lon_in };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 6,
+      zoom: 4,
       center: myLatlng,
     });
     // Create the initial InfoWindow.
@@ -32,7 +32,7 @@ function initMap() {
         JSON.stringify(coord, null, 2)
       );
       infoWindow.open(map);
-      test_funct(coord);
+      put_coord(coord);
     });
 }
 

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block sidenav %}
+<a href="/">Home</a>
+
+{% endblock %}
+
+{% block main %}
+<div class="exp">
+    <h2>Climate trend</h2>
+    <p>"Climate trend" is my final project for CS50x dy Harvard on Edx.</p>
+    <p>The website will pick your rough location based on your IP address, and use data available from Berkeley earth and the World Bank to calculate the average temperature deviation in the last 12 months in the area where you live as well as the amount of Kilo Tonnes equivalent of Co2 that your country has realeased into the atmosphere both in 1990 and 2018.</p>
+    <br>
+    <h2>But what does "Temperature deviation" mean?</h2>
+    <br>
+    <p>Berkeley earth has collated a large amount of temperature measurements for the entire surface of the eart from 1800s until today, they have worked out an average temperature betweenn January 1951 and December 1980 for every single coordinate on the earth's surface. they have then created an awesome dataset containing a temperature devaition value from such avrage for every month between 1880 and present day.</p>
+    <p>This website is a quick glance into the data contained into their work, this is a student project so bear in mind that although I have gone to great lengths to gather data from reputable sources I am not a climate scientist and therefore all the data presented here is indicative and should you wish to learn more about climate change there are an abundance of sources you can use online, come of those are available in the sidebar.</p>
+
+    <h2>Moving the map.</h2>
+    <p>You will notice that if you click anywhere in the map, the corresopnding coordinates automatically populate the 2 forms on the right hand side, if you click on the change location button the data displayed will update to the currently selected coordinates.
+        <br>
+        Alternatively you can type in your own coordinates and automatically jump to the given location, please allow the website some time to refresh as the data being accessed is huge and does take some time to update!
+    </p>
+</div>
+{% endblock %}
