@@ -7,6 +7,7 @@ function put_coord(oggietto) {
     lonInput.value = Math.round(oggietto.lng);
 }
 
+// code adapted from https://developers.google.com/maps/documentation/javascript/examples/event-click-latlng#maps_event_click_latlng-javascript
 function initMap() {
     const myLatlng = { lat: lat_in , lng: lon_in };
     const map = new google.maps.Map(document.getElementById("map"), {
