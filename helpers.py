@@ -36,7 +36,7 @@ def calc_emissions(country):
     if country == "Russia":
         country = "Russian Federation"
 
-
+    #  Open json downloaded with world bank API
     with open('Data/co2.json') as co2:
         data = json.load(co2)
         for i in data[1]:
@@ -52,6 +52,7 @@ def calc_emissions(country):
 
 
 def geocode(lat,lng):
+    # Uses the google API to find country location based on coordinates
     url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&result_type=country&key=AIzaSyDEBjX-IQaXy0dXtike6l2Sm4ileHItbDw'
     response = requests.get(url)
     if response.json()['status'] == 'ZERO_RESULTS':

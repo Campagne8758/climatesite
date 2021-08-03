@@ -8,16 +8,18 @@ app = Flask(__name__)
 def index():
     if request.method == 'GET':
         #  get ip address to get user's location
-        ip_address = "24.48.0.1" #this will need to be: request.headers['X-Real-IP'] currently using test IP address the command is specific for pythoneverywhere
-        # Test code to get initial user location:
+        ip_address = "24.48.0.1" #this will need to be: request.headers['X-Real-IP'] currently using test IP address - the line is specific for pythoneverywhere
+        # Code to get initial user location:
         url = f"http://ip-api.com/json/{ip_address}?fields=country,countryCode,lat,lon"
         response = requests.get(url)
         location = response.json()
         country = location["country"]
+        #  variable to pass to helpers and JS wit coordinates
         lat_in = int(location["lat"])
         lon_in = int(location["lon"])
         loc_in = {'lat' : lat_in, 'lon' : lon_in}
 
+        # call to functions in helpers to derive arguments to pass to web page
         tmp_display = temp_anomaly(lat_in, lon_in)
         emissions = calc_emissions(country)
         emissions_1990 = emissions[0]
@@ -26,8 +28,10 @@ def index():
         return render_template("index.html", tmp_display=tmp_display, loc_in=loc_in, emissions_2018=emissions_2018, emissions_1990=emissions_1990, country=country)
 
     else:
+        #  POST method after submitting form
         lat_in = request.form.get("lat")
         lon_in = request.form.get("lon")
+        #  Handling empty form
         if not lat_in or not lon_in:
             tmp_display = temp_anomaly(44,9)
             country = 'Italy'
@@ -48,7 +52,7 @@ def index():
 
 @app.route("/explain")
 def explain():
-        ip_address = "24.48.0.1" #this will need to be: request.headers['X-Real-IP'] currently using test IP address the command is specific for pythoneverywhere
+        ip_address = "24.48.0.1" #this will need to be: request.headers['X-Real-IP'] currently using test IP address - the line is specific for pythoneverywhere
         # Code to get initial user location:
         url = f"http://ip-api.com/json/{ip_address}?fields=country,countryCode,lat,lon"
         response = requests.get(url)

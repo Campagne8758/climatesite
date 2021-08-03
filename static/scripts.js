@@ -1,5 +1,5 @@
-// require('dotenv').config();
 
+// Function that takes the coordinates from the click event in the function below and inputs them in the coordiantes form
 function put_coord(oggietto) {
     const latInput = document.querySelector('#lat');
     const lonInput = document.querySelector('#lon');
